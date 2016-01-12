@@ -114,18 +114,22 @@ public class CalendarItemView extends View {
         calendar.setTimeInMillis(millis);
 
         CalendarView calendarView = (CalendarView) getParent();
-//        ViewGroup parent = (ViewPager) calendarView.getParent();
-//        CalendarItemView tagView = (CalendarItemView) parent.getTag();
+        if (calendarView.getParent() instanceof ViewPager) {
+            ViewGroup parent = (ViewPager) calendarView.getParent();
+            CalendarItemView tagView = (CalendarItemView) parent.getTag();
+
+            if (!isStaticText && tagView != null && tagView.getTag() != null && tagView.getTag() instanceof Long) {
+                long millis = (long) tagView.getTag();
+                if (isSameDay(millis, this.millis)) {
+                    canvas.drawRoundRect(xPos - dp16, getHeight() / 2 - dp16, xPos + dp16, getHeight() / 2 + dp16, 50f, 50f, mPaintBackground);
+                }
+            }
+        }
 
         if (!isStaticText && isToday(millis)) {
             canvas.drawRoundRect(xPos - dp16, getHeight() / 2 - dp16, xPos + dp16, getHeight() / 2 + dp16, 50f, 50f, mPaintBackgroundToday);
         }
-//        if (!isStaticText && tagView != null && tagView.getTag() != null && tagView.getTag() instanceof Long) {
-//            long millis = (long) tagView.getTag();
-//            if (isSameDay(millis, this.millis)) {
-//                canvas.drawRoundRect(xPos - dp16, getHeight() / 2 - dp16, xPos + dp16, getHeight() / 2 + dp16, 50f, 50f, mPaintBackground);
-//            }
-//        }
+
         if (isStaticText) {
             // 요일 표시
             canvas.drawText(CalendarView.DAY_OF_WEEK[dayOfWeek], xPos, yPos, mPaint);

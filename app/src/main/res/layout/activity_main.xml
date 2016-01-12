@@ -6,7 +6,19 @@
     android:layout_height="match_parent"
     tools:context="com.sun.toy.MainActivity">
 
-    <com.sun.toy.widget.CalendarView android:id="@+id/calendarview"
+    <Button
+        android:id="@+id/btn1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></com.sun.toy.widget.CalendarView>
+        android:layout_height="@dimen/cmm_height"
+        android:textAllCaps="false"
+        android:text="SingleCalendar"/>
+
+    <Button
+        android:id="@+id/btn2"
+        android:textAllCaps="false"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/cmm_height"
+        android:layout_below="@id/btn1"
+        android:text="MultiCalendar"/>
+
 </RelativeLayout>

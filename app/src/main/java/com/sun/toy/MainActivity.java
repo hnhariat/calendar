@@ -1,44 +1,43 @@
 package com.sun.toy;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 
-import com.sun.toy.widget.CalendarItemView;
-import com.sun.toy.widget.CalendarView;
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
-    private CalendarView calendarView;
+    @Bind(R.id.btn1)
+    Button btnSingleCalendar;
+
+    @Bind(R.id.btn2)
+    Button btnMultiCalendar;
+
+    @OnClick({R.id.btn1, R.id.btn2})
+    void onClick(View view) {
+        int id = view.getId();
+
+        if (id == R.id.btn1) {
+            Intent intent = new Intent(this, SingleCalendarActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.btn2) {
+            Intent intent = new Intent(this, MultiCalendarActivity.class);
+            startActivity(intent);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        calendarView = (CalendarView)findViewById(R.id.calendarview);
-
-        initCalendar();
-        calendarView.setDate(System.currentTimeMillis());
+        ButterKnife.bind(this);
     }
 
-    private void initCalendar() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.DATE, 1);
-        // last day of this month
-        int maxDateOfMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-        // the first Day of week this month
-        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-        for (int i = 0; i < maxDateOfMonth; i++) {
-            CalendarItemView child = new CalendarItemView(this);
-            child.setDate(calendar.getTimeInMillis());
-            if (i < 7) {
-                child.setDayOfWeek(i);
-            } else {
-                calendar.add(Calendar.DATE, 1);
-            }
-            calendarView.addView(child);
-        }
-    }
+
 }

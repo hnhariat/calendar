@@ -61,8 +61,6 @@ public class CalendarView extends ViewGroup {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(mMillis);
 
-        // Iterate through all children, measuring them and computing our dimensions
-        // from their size.
         for (int i = 0; i < count; i++) {
             final View child = getChildAt(i);
 
@@ -76,7 +74,6 @@ public class CalendarView extends ViewGroup {
 
             if ((mLeftWidth / mScreenWidth) > rowCount) {
                 maxHeight += child.getMeasuredHeight();
-//                maxHeight += mDateOfWeek;
                 rowCount++;
             } else {
                 maxHeight = Math.max(maxHeight, child.getMeasuredHeight());
@@ -84,21 +81,15 @@ public class CalendarView extends ViewGroup {
             childState = combineMeasuredStates(childState, child.getMeasuredState());
         }
 
-        // Check against our minimum height and width
-        maxHeight = Math.max(maxHeight, getSuggestedMinimumHeight());
         maxHeight = (int) (Math.ceil((count + mDateOfWeek - 1) / 7d) * (mWidthDate * 0.75));// 요일중 일요일이 1부터 시작하므로 1을 빼줌
-//        maxHeight = (int) (Math.ceil(count / 7) * mWidthDate) + mWidthDate;
         maxWidth = Math.max(maxWidth, getSuggestedMinimumWidth());
         int expandSpec = MeasureSpec.makeMeasureSpec(MEASURED_SIZE_MASK, MeasureSpec.AT_MOST);
-        // Report our final dimensions.
+
         setMeasuredDimension(resolveSizeAndState(maxWidth, widthMeasureSpec, childState),
                 resolveSizeAndState(maxHeight, expandSpec, childState << MEASURED_HEIGHT_STATE_SHIFT));
 
-//        super.onMeasure(widthMeasureSpec, expandSpec);
         LayoutParams params = getLayoutParams();
-//        params.height = maxHeight;
         params.height = getMeasuredHeight();
-        // super.onMeasure(widthMeasureSpec, heightSpec);
     }
 
     @Override
@@ -161,27 +152,6 @@ public class CalendarView extends ViewGroup {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-    }
-
-    private int measureText(int measureSpec, int padding1, int paddind2) {
-        int result = 0;
-        // specMode는 현재뷰를 담고 있는 부모뷰의 스펙모드에 따른 현재 뷰의 스펙모드
-        int specMode = MeasureSpec.getMode(measureSpec);
-        // specSize는 현재뷰를 담고 있는 부모뷰가 줄 수 있는 공간의 최대크기
-        int specSize = MeasureSpec.getSize(measureSpec);
-        if (specMode == MeasureSpec.EXACTLY) {
-            result = specSize;
-        } else {
-            // Measure the text: twice text size plus padding
-            result = 2 * (int) mPaint.measureText("message") + padding1 + paddind2;
-            if (specMode == MeasureSpec.AT_MOST) {
-                // specSize가 최대값이므로
-                // result와 specSize 중 최소값을 찾는다
-                result = Math.min(result, specSize);
-            }
-        }
-        // UNSPECIFIED 이면 0을 리턴
-        return result;
     }
 
     private Paint makePaint(int color) {
