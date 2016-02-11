@@ -5,10 +5,12 @@ android calendar
 <img src="./screenshots/screenshot2.png" width="240">
 <img src="./screenshots/screenshot3.png" width="240">
 
-<h1>contains</h1>
+# Contains
  Displaying today
  Can mark events
-<h1>LICENSE</h1>
+ 
+# Licence
+
    Copyright 2016 Bang Sunje
 
    Licensed under the Apache License, Version 2.0 (the "License");
