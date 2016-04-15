@@ -1,10 +1,12 @@
 package com.sun.toy.widget;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.os.Build;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.sun.toy.R;
+import com.sun.toy.utils.Common;
 
 import java.util.Calendar;
 
@@ -47,8 +50,8 @@ public class CalendarItemView extends View {
     }
 
     private void initialize() {
-        dp11 = dip2px(11);
-        dp16 = dip2px(16);
+        dp11 = (int) Common.dp2px(getContext(),11);
+        dp16 = (int) Common.dp2px(getContext(),16);
 
         mPaint.setColor(Color.BLACK);
         mPaint.setTextSize(dp11);
@@ -104,6 +107,7 @@ public class CalendarItemView extends View {
         super.onLayout(changed, left, top, right, bottom);
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -179,7 +183,5 @@ public class CalendarItemView extends View {
         return isStaticText;
     }
 
-    public int dip2px(int dip) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, getResources().getDisplayMetrics());
-    }
+
 }
