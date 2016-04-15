@@ -2,10 +2,6 @@
 android calendar
 
 <img src="./screenshots/animation.gif" width="240">
-</br>
-<img src="./screenshots/screenshot1.png" width="240">
-<img src="./screenshots/screenshot2.png" width="240">
-<img src="./screenshots/screenshot3.png" width="240">
 
 # Contains
  Displaying today
