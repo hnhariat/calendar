@@ -214,7 +214,6 @@ public class CalendarView extends ViewGroup {
             cal.setTimeInMillis(time);
             pager.setTag(view);
             view.invalidate();
-
         }
     }
 }

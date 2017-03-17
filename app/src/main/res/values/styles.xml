@@ -10,4 +10,9 @@
         <item name="titleTextColor">#000000</item>
     </style>
 
+    <style name="Div">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">#dedede</item>
+    </style>
 </resources>

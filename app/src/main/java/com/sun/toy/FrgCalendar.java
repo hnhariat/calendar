@@ -70,9 +70,9 @@ public class FrgCalendar extends Fragment {
         calendarView.initCalendar(dayOfWeek, maxDateOfMonth);
         for (int i = 0; i < maxDateOfMonth + 7; i++) {
             CalendarItemView child = new CalendarItemView(getActivity().getApplicationContext());
-            if (i == 20) {
-                child.setEvent(R.color.colorPrimaryDark);
-            }
+//            if (i == 20) {
+//                child.setEvent(R.color.colorPrimaryDark);
+//            }
             child.setDate(calendar.getTimeInMillis());
             if (i < 7) {
                 child.setDayOfWeek(i);

@@ -1,24 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp"
     tools:context="com.sun.toy.MainActivity">
 
     <Button
         android:id="@+id/btn1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/cmm_height"
-        android:textAllCaps="false"
-        android:text="SingleCalendar"/>
+        android:background="@drawable/selector_btn_rounded"
+        android:text="SingleCalendar"
+        android:textAllCaps="false" />
+
+    <View
+        style="@style/Div"
+        android:layout_margin="4dp" />
 
     <Button
         android:id="@+id/btn2"
-        android:textAllCaps="false"
         android:layout_width="match_parent"
         android:layout_height="@dimen/cmm_height"
         android:layout_below="@id/btn1"
-        android:text="MultiCalendar"/>
+        android:background="@drawable/selector_btn_rounded"
+        android:text="MultiCalendar"
+        android:textAllCaps="false" />
 
-</RelativeLayout>
+</LinearLayout>
