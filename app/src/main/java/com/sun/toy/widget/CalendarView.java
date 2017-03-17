@@ -22,6 +22,7 @@ import android.graphics.Paint;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -162,6 +163,20 @@ public class CalendarView extends ViewGroup {
         mMaxtDateOfMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 
         invalidate();
+    }
+
+    // TODO : touch로 scale in/out 기능 추가
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                break;
+            case MotionEvent.ACTION_MOVE:
+                break;
+            case MotionEvent.ACTION_UP:
+                break;
+        }
+        return super.onTouchEvent(event);
     }
 
     @Override
