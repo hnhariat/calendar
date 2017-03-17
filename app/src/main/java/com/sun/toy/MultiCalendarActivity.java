@@ -4,29 +4,62 @@ import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import butterknife.Bind;
+import com.sun.toy.adapters.AdapterFrgCalendar;
+import com.sun.toy.adapters.AdapterRcvSimple;
+import com.sun.toy.view.Builder;
+import com.sun.toy.view.SimpleViewBinder;
+
+import java.util.ArrayList;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MultiCalendarActivity extends AppCompatActivity implements FrgCalendar.OnFragmentListener {
+import static com.sun.toy.R.id.rcv;
+
+public class MultiCalendarActivity extends BaseActivity implements FrgCalendar.OnFragmentListener {
 
     private static final int COUNT_PAGE = 12;
-    @Bind(R.id.pager)
     ViewPager pager;
     private AdapterFrgCalendar adapter;
+    private AdapterRcvSimple adapterHourLine;
+    private RecyclerView rcv;
+    private ArrayList mList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multi_calendar);
 
-        ButterKnife.bind(this);
-        initControl();
+        initialize();
     }
 
-    private void initControl() {
+    @Override
+    public void initData() {
+        super.initData();
+        mList = new ArrayList();
+        mList.add("06:00 wakeup");
+        mList.add("07:00 breakfast");
+        mList.add("08:00 go to office");
+        mList.add("09:00 work ");
+        mList.add("12:00 lunch");
+        mList.add("13:00 work");
+        mList.add("14:00 sleep");
+        mList.add("18:00 get off work");
+        mList.add("16:30 dinner");
+        mList.add("20:00 sleep");
+    }
+
+    @Override
+    public void initView() {
+        super.initView();
+        pager = (ViewPager) findViewById(R.id.pager);
+    }
+
+    public void initControl() {
         adapter = new AdapterFrgCalendar(getSupportFragmentManager());
         pager.setAdapter(adapter);
         adapter.setOnFragmentListener(this);
@@ -60,6 +93,9 @@ public class MultiCalendarActivity extends AppCompatActivity implements FrgCalen
 
             }
         });
+        adapterHourLine = new AdapterRcvSimple(R.layout.item_rcv_simple);
+        SimpleViewBinder.RecyclerViewBuilder builder =  new SimpleViewBinder.RecyclerViewBuilder(getWindow()).setAdapter(adapterHourLine, getSupportFragmentManager()).setList(mList);
+        rcv = builder.build();
     }
 
     @Override

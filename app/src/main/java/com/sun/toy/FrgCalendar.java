@@ -11,7 +11,7 @@ import com.sun.toy.widget.CalendarView;
 
 import java.util.Calendar;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -19,7 +19,6 @@ import butterknife.ButterKnife;
  */
 public class FrgCalendar extends Fragment {
     private int position;
-    @Bind(R.id.calendarview)
     CalendarView calendarView;
     private long timeByMillis;
     private OnFragmentListener onFragmentListener;
@@ -60,7 +59,7 @@ public class FrgCalendar extends Fragment {
     }
 
     protected void initView() {
-
+        calendarView = (CalendarView) mRootView.findViewById(R.id.calendarview);
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(timeByMillis);
         calendar.set(Calendar.DATE, 1);

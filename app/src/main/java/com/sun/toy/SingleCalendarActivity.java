@@ -8,25 +8,25 @@ import com.sun.toy.widget.CalendarView;
 
 import java.util.Calendar;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SingleCalendarActivity extends AppCompatActivity {
+public class SingleCalendarActivity extends BaseActivity {
 
-    @Bind(R.id.calendarview)
-    CalendarView calendarView;
+
+    private CalendarView calendarView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_calendar);
-        ButterKnife.bind(this);
-        initView();
+        initialize();
     }
 
-    private void initView() {
-        initCalendar();
+    public void initView() {
+        calendarView = (CalendarView) findViewById(R.id.calendarview);
         calendarView.setDate(System.currentTimeMillis());
+        initCalendar();
     }
 
     private void initCalendar() {

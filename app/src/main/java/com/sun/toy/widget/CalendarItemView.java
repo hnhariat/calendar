@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.os.Build;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
@@ -131,7 +132,8 @@ public class CalendarItemView extends View {
         }
 
         if (!isStaticText && isToday(millis)) {
-            canvas.drawRoundRect(xPos - dp16, getHeight() / 2 - dp16, xPos + dp16, getHeight() / 2 + dp16, 50f, 50f, mPaintBackgroundToday);
+            RectF rectF = new RectF(xPos - dp16, getHeight() / 2 - dp16, xPos + dp16, getHeight() / 2 + dp16);
+            canvas.drawRoundRect(rectF, 100f, 100f, mPaintBackgroundToday);
         }
 
         if (isStaticText) {
@@ -144,7 +146,8 @@ public class CalendarItemView extends View {
 
         if (hasEvent) {
             mPaintBackgroundEvent.setColor(getResources().getColor(mColorEvents[0]));
-            canvas.drawRoundRect(xPos - 5, getHeight() / 2 + 20, xPos + 5, getHeight() / 2 + 30, 50f, 50f, mPaintBackground);
+            RectF rectF = new RectF(xPos - 5, getHeight() / 2 + 20, xPos + 5, getHeight() / 2 + 30);
+            canvas.drawRoundRect(rectF, 100f, 100f, mPaintBackground);
         }
 
     }

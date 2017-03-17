@@ -1,9 +1,11 @@
-package com.sun.toy;
+package com.sun.toy.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentTransaction;
+
+import com.sun.toy.FrgCalendar;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
